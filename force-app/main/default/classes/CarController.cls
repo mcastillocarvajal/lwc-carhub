@@ -40,7 +40,13 @@ public with sharing class CarController {
                 whereClause = ' WHERE ' + String.join(criteria, ' AND ');
             }
         }
-        String query = 'SELECT Id,Name,Make__c,MSRP__c ,Description__c ,Category__c ,Picture_URL__c FROM Car__c' +whereClause+' WITH SECURITY_ENFORCED' + ' ORDER BY Name';
+        String query = 'SELECT Id,Name,Make__c,MSRP__c ,Description__c ,Category__c ,Picture_URL__c FROM Car__c' +whereClause+' WITH SECURITY_ENFORCED ORDER BY Name';
         return Database.query(query);
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static Car__c[] getSimilarCars(Id carId, string[] makeType){
+
+        return [SELECT Id,Name,Make__c,MSRP__c ,Description__c ,Category__c ,Picture_URL__c FROM Car__c WHERE Make__c IN :makeType AND Id != :carId];
     }
 }

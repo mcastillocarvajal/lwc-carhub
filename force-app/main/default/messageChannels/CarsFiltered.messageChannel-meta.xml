@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>CarsFiltered</masterLabel>
+    <isExposed>false</isExposed> 
+    <description>This event is fired when cards filters change.</description>
+    <lightningMessageFields>
+        <fieldName>filters</fieldName>
+        <description>Current car filters</description>
+    </lightningMessageFields>
+</LightningMessageChannel>
